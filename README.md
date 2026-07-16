@@ -42,7 +42,7 @@ Antes de iniciar, certifique-se de ter instalado:
 
 1. Clone o repositório:
    ```bash
-   git clone <url-do-repositorio>
+   git clone https://github.com/DanielMartins22/frontend-cadastro-usuario.git
    cd Conceitos Node
    ```
 
