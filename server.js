@@ -80,14 +80,3 @@ app.listen(PORT, () => {
   console.log(`Servidor rodando na porta ${PORT}`);
 });
 
-
-// request/rq = requisiçao
-// response/re = resposta
-
-// http://localhost:3000/usuarios
-
-/* 
-
-danielmncontato
-82mB9pQ#
-*/
