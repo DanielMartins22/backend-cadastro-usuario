@@ -4,15 +4,29 @@
 
 // Novo
 
+import dotenv from 'dotenv';
 import express, { request, response } from 'express';
 import cors from 'cors';
 import { PrismaClient } from './generated/prisma/client.js';
+
+dotenv.config();
+
+if (!process.env.DATABASE_URL) {
+    console.error('Erro: variável de ambiente DATABASE_URL não definida. Configure-a antes de iniciar o servidor.');
+    process.exit(1);
+}
 
 const app = express();
 app.use(express.json());
 app.use(cors());
 
-const prisma = new PrismaClient();
+let prisma;
+try {
+    prisma = new PrismaClient();
+} catch (error) {
+    console.error('Erro ao conectar ao banco de dados via Prisma:', error.message);
+    process.exit(1);
+}
 
 app.get('/usuarios', async (request, response) => {
     const { gender } = request.query
@@ -58,8 +72,6 @@ app.put('/usuarios/:id', async (request, response) => {
     } catch (error) {
         response.status(400).json({ error: error.message });
     }
-
-    1;
 });
 
 app.delete('/usuarios/:id', async (request, response) => {
